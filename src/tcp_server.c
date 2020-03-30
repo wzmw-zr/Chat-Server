@@ -47,9 +47,16 @@ void ExistHandle(User *user) {
 }
 
 void HandleMessage(User *user, UserMsg msg) {
-    if (msg.type == -1) {
-        close(user->sockfd);
-        DeleteUser(user->name);
+    switch (msg.type) {
+        case -1: {
+            close(user->sockfd);
+            LOCK;
+            DeleteUser(user->name);
+            UNLOCK;
+        } break;
+        case 1: {
+            printf("%s: %s\n", user->name, msg.data);
+        } break;
     }
 }
 
