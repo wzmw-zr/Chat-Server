@@ -12,7 +12,7 @@ void BindAndListen(int sockfd, int port);
 
 void *work(void *arg);
 void ExistHandle(User *user);
-void HandleMessage(UserMsg msg);
+void HandleMessage(User *user, UserMsg msg);
 void Communicate(User *user);
 
 int SearchUser(char *name);

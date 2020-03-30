@@ -46,11 +46,11 @@ void ExistHandle(User *user) {
     close(sockfd);
 }
 
-void HandleMessage(UserMsg msg) {
-    printf("name = %s\n", msg.name);
-    printf("type = %d\n", msg.type);
-    printf("size = %d\n", msg.size);
-    printf("data = %s\n", msg.data);
+void HandleMessage(User *user, UserMsg msg) {
+    if (msg.type == -1) {
+        close(user->sockfd);
+        DeleteUser(user->name);
+    }
 }
 
 void Communicate(User *user) {
@@ -65,7 +65,7 @@ void Communicate(User *user) {
             perror("recv");
             break;
         }    
-        HandleMessage(msg);
+        HandleMessage(user, msg);
     }
     LOCK;
     DeleteUser(user->name);
