@@ -8,7 +8,7 @@ void *test(void *arg) {
     while (1) {
         char word[100];
         int len = sizeof(word);
-        if (rev(fd, word, len, 0) <= 0) {
+        if (recv(fd, word, len, 0) <= 0) {
             perror("recv");
             return NULL;
         }
@@ -18,7 +18,7 @@ void *test(void *arg) {
 }
 
 int main() { 
-    int port = get_value(path, "PORT");
+    int port = atoi(get_value(path, "PORT"));
     int sockfd = GetSocket();
     BindAndListen(sockfd, port);
     while (1) {
@@ -31,7 +31,7 @@ int main() {
         pthread_attr_t attr;
         pthread_attr_init(&attr);
         pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
-        pthread_create(tid, &attr, test, &fd);
+        pthread_create(&tid, &attr, test, &fd);
     }
     return 0; 
 }

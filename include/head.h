@@ -5,8 +5,8 @@
 	> Created Time: 2020年03月30日 星期一 10时37分57秒
  ************************************************************************/
 
-#ifndef _INCLUDE/HEAD_H
-#define _INCLUDE/HEAD_H
+#ifndef _INCLUDE_HEAD_H
+#define _INCLUDE_HEAD_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
