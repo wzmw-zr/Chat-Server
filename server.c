@@ -23,13 +23,12 @@ int main() {
     int sockfd = GetSocket();
     BindAndListen(sockfd, port);
     while (1) {
-        int fd;
-        pthread_t tid;
-        if ((fd = accept(sockfd, NULL, NULL)) == -1) {
+        User *user = (User *) calloc(sizeof(User), 1);
+        if ((user->sockfd = accept(sockfd, NULL, NULL)) == -1) {
             perror("accept");
+            free(user);
             continue;
         }
-        User *user = (User *) calloc(sizeof(User), 1);
         pthread_attr_t attr;
         pthread_attr_init(&attr);
         pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
