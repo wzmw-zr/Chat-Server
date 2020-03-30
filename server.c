@@ -18,6 +18,7 @@ void *test(void *arg) {
 }
 
 int main() { 
+    start = (User *) calloc(sizeof(User), 1);
     int port = atoi(get_value(path, "PORT"));
     int sockfd = GetSocket();
     BindAndListen(sockfd, port);
