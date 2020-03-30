@@ -73,6 +73,9 @@ void Communicate(User *user) {
 }
 
 void *work(void *arg) {
+    User *head = start;
+    while (head->next) printf("%s ", head->next->name), head = head->next;
+    printf("\n");
     User *user = (User *) arg; 
     int len = sizeof(user->name);
     if (recv(user->sockfd, user->name, len, 0) == -1) {

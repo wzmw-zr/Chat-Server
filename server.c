@@ -28,10 +28,11 @@ int main() {
             perror("accept");
             continue;
         }
+        User *user = (User *) calloc(sizeof(User), 1);
         pthread_attr_t attr;
         pthread_attr_init(&attr);
         pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
-        pthread_create(&tid, &attr, test, &fd);
+        pthread_create(&(user->tid), &attr, work, user);
     }
     return 0; 
 }

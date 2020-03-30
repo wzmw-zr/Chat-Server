@@ -15,5 +15,9 @@ void ExistHandle(User *user);
 void HandleMessage(UserMsg msg);
 void Communicate(User *user);
 
+int SearchUser(char *name);
+void AddUser(User *user);
+void DeleteUser(char *name);
+
 extern User *start;
 #endif
