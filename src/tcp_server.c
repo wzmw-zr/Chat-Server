@@ -29,7 +29,7 @@ void AddUser(User *user) {
 void DeleteUser(char *name) {
     User *head = start;
     while (head->next && strcmp(name, head->next->name)) head = head->next;
-    if (head->next) return ;
+    if (head->next == NULL) return ;
     User *tmp = head->next;
     head->next = tmp->next;
     free(tmp);
