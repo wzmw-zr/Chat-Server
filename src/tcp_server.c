@@ -56,6 +56,11 @@ void HandleMessage(User *user, UserMsg msg) {
         } break;
         case 1: {
             printf("%s: %s\n", user->name, msg.data);
+            User *head = start;
+            while (head->next) {
+                send(head->next->sockfd, (void *) &msg, sizeof(msg), 0);
+                head = head->next;
+            }
         } break;
     }
 }
